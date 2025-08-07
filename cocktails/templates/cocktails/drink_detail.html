@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ drink.strDrink }}</title>
+</head>
+<body>
+    <h1>{{ drink.strDrink }}</h1>
+    <h3><strong>Category:</strong> {{ drink.strCategory }}</h3>
+    <h3><strong>Alcoholic:</strong> {{ drink.strAlcoholic }}</h3>
+    <h3><strong>Glass:</strong> {{ drink.strGlass }}</h3>
+    <h2>Instructions</h2>
+    <p>{{ drink.strInstructions }}</p>
+    
+    {% if drink.strIngredient1 %}
+        <h3>Ingredients</h3>
+        <ul>
+            {% for item in ingredients %}
+                <li>{{ item.measure }} {{item.ingredient}}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <a href="{% url 'search_cocktail' %}">Back to Search Results</a>
+</body>
+</html>

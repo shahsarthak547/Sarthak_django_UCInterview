@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cocktail Search Results</title>
+</head>
+<body>
+    <h1>Results for "{{ query }}"</h1>
+    <form method="get" action="{% url 'search_cocktail' %}">
+        <input type="text" name="q" placeholder="Search for a cocktail...">
+        <button type="submit">Search</button>
+    </form>
+    {% if cocktails %}
+        <ul>
+            {% for drink in cocktails %}
+                {% if drink.idDrink %}
+                <li>
+                    <a href="{% url 'drink_detail' drink.idDrink %}">
+                        <h3>View Details</h3>
+                        <img src="{{ drink.strDrinkThumb }}" alt="{{ drink.strDrink }}" />
+                        <p>{{ drink.strDrink }} </p>                  
+                    </a>
+                </li>
+                <hr>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No cocktails found for "{{ query }}".</p>
+    {% endif %}
+</body>
+</html>
